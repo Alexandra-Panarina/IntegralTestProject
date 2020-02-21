@@ -1,0 +1,75 @@
+/*Initial parameters Mat-Card*/
+.sing-in-card {
+  max-width: 550px;
+  margin:  0 auto;
+  font-size: 16px;
+}
+.background-card {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  width: auto;
+  height: auto;
+  background-color: #d9d9d9;
+}
+@media (max-width: 550px) {
+  .background-card {
+    background-color: white;
+  }
+  .sing-in-card {
+    box-shadow: none;
+  }
+}
+/*--------------------------*/
+
+/*----Width input in form---*/
+form.example-form > .mat-form-field {
+  width: 100%;
+}
+/*-------------------------*/
+form.example-form > .btn-sing-in {
+  margin-top: 30px;
+  width: 100%;
+}
+
+/*-------CheckBox----------*/
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: minmax(10px, auto) minmax(10px, auto) minmax(10px, auto);
+  grid-template-areas:
+    'telephone-checkbox    telephone-input'
+    'email-checkbox                 .     '
+    'address-checkbox       address-input';
+}
+.telephone-checkbox {
+  grid-area: telephone-checkbox;
+  align-self: center;
+}
+.telephone-input {
+  grid-area: telephone-input;
+}
+.email-checkbox {
+  grid-area: email-checkbox;
+}
+.address-checkbox {
+  grid-area: address-checkbox;
+  align-self: center;
+}
+.address-input {
+  grid-area:  address-input;
+}
+/*-------------------------*/
+/*- Mat Card image upload--*/
+
+.padding-on-top {
+margin-top: 30px;
+}
+.error-upload{
+  font-size:16px;
+  color: red;
+}
+.img-upload {
+  font-size:12px;
+  color: black;
+}
+/*-------------------------*/

@@ -1,0 +1,106 @@
+<div class="background-card">
+  <mat-card  class="sing-in-card">
+    <mat-card-title>Регистрация</mat-card-title>
+    <br>
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                   [(ngModel)]="userEmail" placeholder="Ex. pat@example.com" required>
+            <mat-error *ngIf="emailFormControl.hasError('email')">
+              Введите Email
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Поле <strong>не заполнено</strong>
+            </mat-error>
+          </mat-form-field>
+        <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Фамилия</mat-label>
+            <input matInput  [(ngModel)]="userLastName" name="userLastName" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="userFirstName" name="userFirstName" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Отчество</mat-label>
+            <input matInput [(ngModel)]="userMiddleName" name="userMiddleName" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Роль</mat-label>
+            <mat-select [(ngModel)]="userRole" name="userRole" required>
+              <mat-option value="developer">Разработчик</mat-option>
+              <mat-option value="architect">Проектировщик</mat-option>
+              <mat-option value="admin">Администратор</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <h5>Способ оповещения</h5>
+          <div class="checkbox-grid">
+
+            <mat-checkbox color="primary" class="example-margin telephone-checkbox" [(ngModel)]="telephone" name="tel">Телефон</mat-checkbox>
+            <mat-checkbox color="primary" class="example-margin email-checkbox" [(ngModel)]="email" name="em">Электронная почта</mat-checkbox>
+            <mat-checkbox color="primary" class="example-margin address-checkbox" [(ngModel)]="address" name="addr">Письмо</mat-checkbox>
+
+            <mat-form-field [style.display]="telephone ? 'block' : 'none'" class="telephone-input" appearance="legacy">
+              <mat-label>Телефон</mat-label>
+              <input matInput [(ngModel)]="userTelephone" name="userTelephone" placeholder="+7 888 888 88 88">
+              <mat-hint>Укажите номер телефона</mat-hint>
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            <mat-form-field [style.display]="address ? 'block' : 'none'" class="address-input" appearance="fill">
+              <mat-label>Почтовый адрес</mat-label>
+              <textarea  [(ngModel)]="userPostOffice" name="userPostOffice"
+                matInput
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+          </div>
+
+          <br>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Логин</mat-label>
+          <input matInput [(ngModel)]="userLogin" name="userLogin" required>
+        </mat-form-field>
+        <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl"  [errorStateMatcher]="matcher"   [(ngModel)]="userPassword" name="userPassword" required>
+            <mat-hint>Обязательное поле</mat-hint>
+            <mat-error *ngIf="passwordFormControl.hasError('hasntCapitalLetter')">
+              Нет хотя бы одной заглавной буквы [A-Z]
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('hasntSmallLetter')">
+              Нет хотя бы одной прописной буквы [a-z]
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('hasntNumeral')">
+              Нет хотя бы одной цифры [0-9]
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('hasntMinLength')">
+              Пароль должен быть не менее 6 символов
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Поле <strong>не заполнено</strong>
+            </mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <button class="btn-sing-in" [disabled]="passwordFormControl.errors != null || emailFormControl.errors != null" mat-raised-button color="primary" (click)="submitForm()">Зарегестрироваться</button>
+        </form>
+  </mat-card>
+
+  <mat-card class="sing-in-card padding-on-top">
+    <h5>Выбор аватарки</h5>
+    <div [ngClass]="{'img-upload':checkImgUpload, 'error-upload':!checkImgUpload}">
+    <p>не более 2Мб</p>
+    <input type="file" (change)="fileIpload($event)" id="imgIpload"> {{fileSize}}
+    </div>
+  </mat-card>
+</div>
